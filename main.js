@@ -67,6 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
 
+    // Offers WhatsApp Integration
+    document.querySelectorAll('.whatsapp-offer').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const packName = btn.getAttribute('data-pack');
+            const businessNumber = "34609705227";
+            const message = `Hola Autoescuela Europa, estoy interesado en la oferta: ${packName}. ¿Podrían darme más información sobre el presupuesto?`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${businessNumber}?text=${encodedMessage}`, '_blank');
+        });
+    });
+
     // Simple Reveal on Scroll
     const observerOptions = {
         threshold: 0.1
