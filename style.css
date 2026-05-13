@@ -23,8 +23,10 @@
 html, body {
     overflow-x: hidden;
     width: 100%;
+    max-width: 100%;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 body {
@@ -292,11 +294,13 @@ img {
 }
 
 .testimonial-card {
-    min-width: 350px;
+    width: 100%;
+    max-width: 400px;
     background: var(--background);
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    flex-shrink: 0;
 }
 
 .stars {
@@ -470,15 +474,17 @@ img {
 
 .offers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 2rem;
 }
 
-/* Forzar 2x2 en la sección de prácticas */
-.bg-blue .offers-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 900px;
-    margin: 0 auto;
+/* Forzar 2x2 en la sección de prácticas SOLO en pantallas grandes */
+@media (min-width: 769px) {
+    .bg-blue .offers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+        margin: 0 auto;
+    }
 }
 
 .offer-card {
@@ -642,7 +648,6 @@ img {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 2rem;
     display: flex;
     justify-content: space-between;
@@ -657,7 +662,7 @@ img {
 }
 
 /* Responsive */
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
     .hero-grid, .grid-2 {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -704,7 +709,7 @@ img {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .nav-links {
         display: none;
         flex-direction: column;
@@ -779,30 +784,97 @@ img {
     }
 
     .offer-category {
-        padding: 2rem 1rem;
-        margin-bottom: 2rem;
+        padding: 1.5rem 0.8rem;
+        margin-bottom: 1.5rem;
+        border-radius: 20px;
     }
 
     .category-title {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .category-title small {
+        font-size: 0.9rem;
     }
 
     .offers-grid {
-        grid-template-columns: 1fr; /* Una sola columna en móvil */
-        gap: 1.5rem;
+        grid-template-columns: 1fr !important; /* Forzamos 1 columna en móvil */
+        gap: 1.2rem;
     }
 
     .offer-card {
-        padding: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1.2rem;
+    }
+
+    .offer-card h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .offer-list li {
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
     }
 
     .offer-footer {
-        padding: 0.6rem;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     .offer-note {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        line-height: 1.2;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1.2rem; /* Subidos: Reducido de 2rem a 1.2rem para que estén más cerca del logo */
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0; /* Eliminado el margen superior para que suban más */
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+    .social-links a {
+        font-size: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: var(--white) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer {
+        padding: 80px 0 200px !important; /* Aún más margen para asegurar visibilidad */
+        background: #0f172a !important; /* Forzamos el color oscuro */
+        position: relative;
+        z-index: 9999 !important; /* Prioridad absoluta sobre todo lo demás */
+        display: block !important;
+    }
+
+    .footer-logo, .social-links {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        margin-top: 3rem;
     }
 
     .container {
