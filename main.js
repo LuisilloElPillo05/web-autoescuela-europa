@@ -115,4 +115,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
+
+    // --- LOGICA MODAL DE VACACIONES ---
+    const modal = document.getElementById('vacation-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    if (modal) {
+        // Mostrar modal tras un segundo del arranque
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 800);
+
+        // Función para cerrar modal
+        const closeModal = () => {
+            modal.classList.remove('active');
+        };
+
+        // Cerrar al pulsar X
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Cerrar al hacer clic fuera de la tarjeta
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
 });
