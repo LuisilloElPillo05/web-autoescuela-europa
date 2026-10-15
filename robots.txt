@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://auto-escuela-europa.com/sitemap.xml
